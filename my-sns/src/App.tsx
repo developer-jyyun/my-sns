@@ -26,6 +26,17 @@ const router = createBrowserRouter([
   },
 ]);
 
+function App() {
+  return (
+    <>
+      <GlobalStyles />
+      <RouterProvider router={router} />
+    </>
+  );
+}
+
+export default App;
+
 const GlobalStyles = createGlobalStyle`
 ${reset};
 *{box-sizing: border-box;}
@@ -37,21 +48,3 @@ body{
   background:#5fa578;
 }
 `;
-
-function App() {
-  return (
-    <>
-      <GlobalStyles />
-      <RouterProvider router={router} />
-      <ul>
-        <li>dddd</li>
-        <li>dddd</li>
-        <li>dddd</li>
-        <li>dddd</li>
-        <li>dddd</li>
-      </ul>
-    </>
-  );
-}
-
-export default App;
