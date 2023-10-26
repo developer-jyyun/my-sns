@@ -3,6 +3,11 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { FirebaseError } from "firebase/app";
+
+// const errors ={
+//     "auth/email-already-in-use":"이미 가입된 이메일 주소입니다."
+// }
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -11,6 +16,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
@@ -26,6 +32,7 @@ export default function SignUp() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
     console.log(userName, email, password);
     if (isLoading || userName === "" || email === "" || password === "") {
       return;
@@ -45,8 +52,12 @@ export default function SignUp() {
 
       //사용자 프로필 이름 지정
       //홈페이지 리디렉션
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      if (err instanceof FirebaseError) {
+        console.log(err.code, err.message);
+        setError(err.message);
+      }
+      console.error(e);
       //   setError()
     } finally {
       setIsLoading(false);
@@ -95,7 +106,7 @@ const ErrMsg = styled.p`
   font-weight: bold;
   background: pink;
   padding: 4px 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   color: tomato;
   margin: 10px auto;
   width: 100%;

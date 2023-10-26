@@ -3,26 +3,31 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
-import Login from "./Pages/Login";
+import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import LoadingScreen from "./components/LoadingScreen";
 import { auth } from "./firebase";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { styled } from "styled-components";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
     children: [
       { path: "", element: <Home /> },
       { path: "/profile", element: <Profile /> },
     ],
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: "/signin",
+    element: <SignIn />,
   },
   {
     path: "/signup",
