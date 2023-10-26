@@ -5,9 +5,11 @@ import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
+import LoadingScreen from "./components/LoadingScreen";
+import { auth } from "./firebase";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import LoadingScreen from "./components/LoadingScreen";
+import { styled } from "styled-components";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const init = async () => {
-    //wait for firebase
+    await auth.authStateReady();
     setTimeout(() => setIsLoading(false), 2000);
   };
 
@@ -40,10 +42,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <GlobalStyles />
       {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
-    </>
+    </Wrapper>
   );
 }
 
@@ -59,4 +61,10 @@ body{
   color:#fff;
   background:#5fa578;
 }
+`;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  margin: 0 auto;
 `;
