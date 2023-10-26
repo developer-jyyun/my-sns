@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
-import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
+import {
+  ErrMsg,
+  Form,
+  Input,
+  SubTitle,
+  Switcher,
+  Title,
+  Wrapper,
+} from "../components/auth-components";
 
 // const errors ={
 //     "auth/email-already-in-use":"이미 가입된 이메일 주소입니다."
@@ -57,7 +65,6 @@ export default function SignUp() {
         console.log(err.code, err.message);
         setError(err.message);
       }
-      console.error(e);
       //   setError()
     } finally {
       setIsLoading(false);
@@ -93,71 +100,12 @@ export default function SignUp() {
         />
         {error !== "" ? <ErrMsg>{error}</ErrMsg> : null}
         {/* <ErrMsg>error</ErrMsg> */}
-        <Input
-          type="submit"
-          value={isLoading ? "loading..." : "Create Account"}
-        />
+        <Input type="submit" value={isLoading ? "loading..." : "회원가입"} />
+        <Switcher>
+          이미 계정이 있으신가요? &nbsp;&nbsp;
+          <Link to="/signin">로그인 하러 가기 🤗 </Link>
+        </Switcher>
       </Form>
     </Wrapper>
   );
 }
-
-const ErrMsg = styled.p`
-  font-weight: bold;
-  background: pink;
-  padding: 4px 20px;
-  border-radius: 10px;
-  color: tomato;
-  margin: 10px auto;
-  width: 100%;
-  text-align: center;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
-  height: 100vh;
-`;
-const Title = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  font-weight: 600;
-`;
-const SubTitle = styled.h2`
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  font-weight: 600;
-`;
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-`;
-const Input = styled.input`
-  width: 100%;
-  padding: 10px 20px;
-  border-radius: 50px;
-  font-size: 15px;
-  outline: none;
-  border: 2px solid #eee;
-
-  &[type="submit"] {
-    cursor: pointer;    
-    background: #fff19a;
-    color: #001153;
-    font-weight: 600;
-    font-size: 24px;
-    padding: 16px 20px;
-}
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-`;
