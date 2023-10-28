@@ -12,6 +12,7 @@ import {
   Title,
   Wrapper,
 } from "../components/auth-components";
+import GithubLoginBtn from "../components/GithubLoginBtn";
 
 // const errors ={
 //     "auth/email-already-in-use":"이미 가입된 이메일 주소입니다."
@@ -101,11 +102,12 @@ export default function SignUp() {
         {error !== "" ? <ErrMsg>{error}</ErrMsg> : null}
         {/* <ErrMsg>error</ErrMsg> */}
         <Input type="submit" value={isLoading ? "loading..." : "회원가입"} />
-        <Switcher>
-          이미 계정이 있으신가요? &nbsp;&nbsp;
-          <Link to="/signin">로그인 하러 가기 🤗 </Link>
-        </Switcher>
       </Form>
+      <Switcher>
+        이미 계정이 있으신가요? &nbsp;&nbsp;
+        <Link to="/signin">로그인 하러 가기 🤗 </Link>
+      </Switcher>
+      <GithubLoginBtn />
     </Wrapper>
   );
 }

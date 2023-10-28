@@ -12,6 +12,7 @@ import {
   Title,
   Wrapper,
 } from "../components/auth-components";
+import GithubLoginBtn from "../components/GithubLoginBtn";
 export default function SignIn() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -74,12 +75,12 @@ export default function SignIn() {
         />
         {error !== "" ? <ErrMsg>{error}</ErrMsg> : null}
         <Input type="submit" value={isLoading ? "loading..." : "로그인"} />
-        <Switcher>
-          {" "}
-          아직 계정이 없으신가요? &nbsp;&nbsp;
-          <Link to="/signup">회원가입 하러 가기 🤗</Link>
-        </Switcher>
       </Form>
+      <Switcher>
+        아직 계정이 없으신가요? &nbsp;&nbsp;
+        <Link to="/signup">회원가입 하러 가기 🤗</Link>
+      </Switcher>
+      <GithubLoginBtn />
     </Wrapper>
   );
 }

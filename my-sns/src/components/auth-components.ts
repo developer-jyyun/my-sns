@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const Switcher = styled.p`
-  margin: 10px auto;
+  margin: 30px auto 0;
   a {
     background: #4672bd;
     padding: 5px;
