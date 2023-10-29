@@ -1,9 +1,5 @@
 import React from "react";
-
+import PostsForm from "../components/PostsForm";
 export default function Home() {
-  return (
-    <div>
-      <h1>🍒 My SNS 💌</h1>
-    </div>
-  );
+  return <PostsForm />;
 }
