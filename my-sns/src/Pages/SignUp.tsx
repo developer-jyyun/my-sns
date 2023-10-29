@@ -11,7 +11,7 @@ import {
   Switcher,
   Title,
   Wrapper,
-} from "../components/auth-components";
+} from "../components/Auth-components";
 import GithubLoginBtn from "../components/GithubLoginBtn";
 
 // const errors ={
