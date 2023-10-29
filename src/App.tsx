@@ -9,7 +9,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import { auth } from "./firebase";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -70,6 +70,9 @@ body{
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: 95vh;
   margin: 0 auto;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
 `;

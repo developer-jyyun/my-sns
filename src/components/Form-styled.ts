@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 export const SubmitBtn = styled.input`
   cursor: pointer;
   background: #fff4ac;
@@ -53,6 +53,7 @@ color: #333;
 export const Textarea = styled.textarea`
   width: 100%;
   padding:20px;
+  margin-top:10px;
   font-size: 15px;
   border-radius: 5px;
   background-color: #eee;

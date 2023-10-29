@@ -1,6 +1,6 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import {
   RiLogoutCircleRLine,
   RiHomeHeartFill,
@@ -33,18 +33,23 @@ export default function Layout() {
           <RiLogoutCircleRLine />
         </NavItem>
       </Nav>
-      <Outlet />
+      <RightLayout>
+        <Outlet />
+      </RightLayout>
     </Wrapper>
   );
 }
-
+const RightLayout = styled.div`
+  width: 80%;
+  height: 100vh;
+  margin-left:20%;
+  padding:4rem 0;
+  }
+`;
 const Wrapper = styled.div`
-  display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr 4fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  height: 100%;
-  padding: 50px 0px;
   width: 100%;
   max-width: 860px;
 `;
@@ -52,9 +57,10 @@ const Wrapper = styled.div`
 const Nav = styled.div`
   display: flex;
   flex-direction: column;
+  width: 10%;
   align-items: center;
-  justify-content: center;
   gap: 20px;
+  position: fixed;
 `;
 
 const NavItem = styled.div`

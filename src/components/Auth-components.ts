@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export const Switcher = styled.p`
   margin: 30px auto 0;
