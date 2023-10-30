@@ -21,6 +21,8 @@ export default function Profile() {
   const user = auth.currentUser;
   const [avatar, setAvatar] = useState(user?.photoURL);
   const [myPosts, setMyPosts] = useState<IPost[]>([]);
+  const [name, setName] = useState(user?.displayName ?? "Anonymous");
+  const [editMode, setEditMode] = useState(false);
   const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!user) return; //user===null
@@ -66,6 +68,25 @@ export default function Profile() {
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  const onChangeNameClick = async () => {
+    if (!user) return;
+    setEditMode((prev) => !prev);
+    if (!editMode) return;
+    try {
+      await updateProfile(user, {
+        displayName: name,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setEditMode(false);
+    }
+  };
+
+  const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
   return (
     <Wrapper>
       <AvatarUpload htmlFor="avatar">
@@ -77,7 +98,14 @@ export default function Profile() {
         accept="image/*"
         onChange={onAvatarChange}
       />
-      <Name>{user?.displayName ?? "익명"}</Name>
+      {editMode ? (
+        <NameInput onChange={onNameChange} type="text" value={name} />
+      ) : (
+        <Name>{name ?? "이름없음"}</Name>
+      )}
+      <ChangeNameBtn onClick={onChangeNameClick}>
+        {editMode ? "Save" : "Change Name"}
+      </ChangeNameBtn>
       <MyPosts>
         <H2Title>🍒 나의 게시물 </H2Title>
         {myPosts.map((mypost) => (
@@ -116,6 +144,26 @@ const Name = styled.span`
   display: block;
   text-align: center;
   margin: 10px auto 20px;
+`;
+const NameInput = styled.input`
+  font-size: 16px;
+  text-align: center;
+  background: transparent;
+  padding: 5px;
+  color: #fff;
+  outline: none;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 10px auto 20px;
+`;
+const ChangeNameBtn = styled.button`
+  background: transparent;
+  color: #fff;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 0.1px solid white;
+  min-width: 110px;
 `;
 
 const MyPosts = styled.div`
