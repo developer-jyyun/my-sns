@@ -70,6 +70,7 @@ body{
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  width: 90%;
   height: 95vh;
   margin: 0 auto;
   overflow-y: scroll;

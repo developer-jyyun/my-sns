@@ -1,15 +1,9 @@
 import React, { useState } from "react";
-import {
-  FileInput,
-  Form,
-  FormTitle,
-  LabelBtn,
-  SubmitBtn,
-  Textarea,
-} from "./Form-styled";
+import { FileInput, Form, LabelBtn, SubmitBtn, Textarea } from "./Form-styled";
 import { auth, db, storage } from "../firebase";
 import { collection, addDoc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { H2Title } from "../components/Common-styled";
 
 export default function PostsForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -68,7 +62,7 @@ export default function PostsForm() {
   };
   return (
     <Form onSubmit={handleSubmit}>
-      <FormTitle>🍒 게시글 작성 💌 </FormTitle>
+      <H2Title>🍒 게시글 작성 </H2Title>
       <Textarea
         rows={5}
         maxLength={180}

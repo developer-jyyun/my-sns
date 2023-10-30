@@ -37,19 +37,7 @@ export const LabelBtn = styled.label`
 export const FileInput = styled.input`
   display: none;
 `;
-export const Input = styled.input`
-width: 100%;
-padding:20px;
-font-size: 15px;
-border-radius: 5px;
-background-color: #eee;
-border: 2px solid #fff;
-color: #333;
-&:focus {
-  outline: none;
-  border-color: #edffe9;
 
-`;
 export const Textarea = styled.textarea`
   width: 100%;
   padding:20px;
@@ -62,19 +50,10 @@ export const Textarea = styled.textarea`
   &:focus {
     outline: none;
     border-color: #edffe9;
-
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
-`;
-
-export const FormTitle = styled.h2`
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #fff;
-  display: inline-block;
-  padding: 10px;
 `;

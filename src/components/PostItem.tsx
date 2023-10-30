@@ -1,23 +1,15 @@
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
 import { IPost } from "./Timeline";
-import styled from "styled-components";
 import { auth, db, storage } from "../firebase";
 import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import {
   deleteObject,
   ref,
   uploadBytes,
-  storageRef,
   getDownloadURL,
 } from "firebase/storage";
-import { FileInput, LabelBtn, Textarea } from "./Form-styled";
-
-interface IEditedPost {
-  post: string;
-  photo?: File | null;
-}
-
+import styled from "styled-components";
+import { FileInput, Textarea } from "./Form-styled";
 export default function PostItem({ photo, post, userId, username, id }: IPost) {
   const user = auth.currentUser; //현재 로그인한 사용자 정보
   const photoRef = ref(storage, `posts/${user.uid}/${id}`); // 이미지 참조
