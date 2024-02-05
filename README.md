@@ -1,5 +1,7 @@
 # React + TypeScript + Vite
 
+** 리팩토링 후 배포 예정 **
+  
 - firebase 이메일 로그인 및 github 로그인 기능
 - 게시글 및 이미지 읽기, 쓰기 기능
 - 권한에 따른 게시글 수정 / 삭제기능
